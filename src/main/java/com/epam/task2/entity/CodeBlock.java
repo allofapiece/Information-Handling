@@ -1,4 +1,11 @@
 package com.epam.task2.entity;
 
-public class CodeBlock extends TextPart {
+/**
+ * Class, that describes code in text
+ *
+ * @author Listratsenka Stanislau
+ * @version 1.0
+ */
+public class CodeBlock extends TextUnit {
+
 }

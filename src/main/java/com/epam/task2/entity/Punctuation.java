@@ -8,19 +8,21 @@ package com.epam.task2.entity;
  * @author Listratsenka Stanislau
  * @version 1.0
  */
-public class Punctuation extends SentenceUnit {
+public class Punctuation implements SyntaxUnit {
 
-    char symbol;
+    String punctuation;
 
     /**
-     * @param symbol
+     * Constructor
+     *
+     * @param punctuation
      */
-    public Punctuation(char symbol) {
-        this.symbol = symbol;
+    public Punctuation(String punctuation) {
+        this.punctuation = punctuation;
     }
 
     @Override
-    protected void printBefore() {
-        System.out.println(symbol);
+    public void print() {
+        System.out.println(punctuation);
     }
 }

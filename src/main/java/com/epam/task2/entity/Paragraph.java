@@ -8,14 +8,5 @@ import java.util.List;
  * @author Listratsenka Stanislau
  * @version 1.0
  */
-public class Paragraph extends TextUnit {
-
-    /**
-     * @param paragraphUnits List of paragraph parts(sentences)
-     */
-    public Paragraph(List<ParagraphUnit> paragraphUnits) {
-        for (ParagraphUnit unit : paragraphUnits) {
-            this.add(unit);
-        }
-    }
+public class Paragraph extends Composite{
 }

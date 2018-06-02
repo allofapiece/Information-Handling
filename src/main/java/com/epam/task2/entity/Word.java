@@ -1,5 +1,7 @@
 package com.epam.task2.entity;
 
+import javafx.concurrent.WorkerStateEvent;
+
 /**
  * That class describes words of sentence.
  * Keep attention {@link Punctuation} and {@link Word} classes are
@@ -8,11 +10,17 @@ package com.epam.task2.entity;
  * @author Listratsenka Stanislau
  * @version 1.0
  */
-public class Word extends SentenceUnit {
-
+public class Word extends Composite {
     private String word;
 
     /**
+     * Default constructor
+     */
+    public Word() {}
+
+    /**
+     * Constructor
+     *
      * @param word
      */
     public Word(String word) {
@@ -22,9 +30,13 @@ public class Word extends SentenceUnit {
     /**
      * Method print whitespace before each word
      */
-    @Override
+    /*@Override
     public void printBefore() {
-        System.out.println(" ");
-    }
+        System.out.println(" " + word);
+    }*/
 
+    @Override
+    public void print() {
+        System.out.println(" " + word);
+    }
 }

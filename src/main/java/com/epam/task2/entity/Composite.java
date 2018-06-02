@@ -1,5 +1,7 @@
 package com.epam.task2.entity;
 
+import com.epam.task2.service.parser.BaseParser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,15 +11,39 @@ import java.util.List;
  * @author Listratsenka Stanislau
  * @version 1.0
  */
-public abstract class UnitComposite {
-    private List<UnitComposite> children = new ArrayList<>();
+public abstract class Composite implements SyntaxUnit {
+    private List<SyntaxUnit> children = new ArrayList<>();
+
+    /**
+     * Default constructor
+     */
+    public Composite() {}
+
+    /**
+     * Constructor
+     *
+     * @param syntaxUnits
+     */
+    public Composite(List<SyntaxUnit> syntaxUnits) {
+        children = syntaxUnits;
+    }
 
     /**
      * @param unit
      */
-    public void add(UnitComposite unit) {
+    public void add(SyntaxUnit unit) {
         children.add(unit);
     }
+
+	/**
+	 * @param children
+	 * @return List
+	 */
+	public List<SyntaxUnit> setChildren(List children) {
+		this.children = children;
+
+		return this.children;
+	}
 
     /**
      * @return int
@@ -32,7 +58,7 @@ public abstract class UnitComposite {
      */
     public void print() {
         printBefore();
-        for (UnitComposite unit : children) {
+        for (SyntaxUnit unit : children) {
             unit.print();
         }
         printAfter();
@@ -49,4 +75,5 @@ public abstract class UnitComposite {
      * template after component printing
      */
     protected void printAfter() {}
+
 }

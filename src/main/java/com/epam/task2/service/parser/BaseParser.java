@@ -5,10 +5,12 @@ import com.epam.task2.entity.SyntaxUnit;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class BaseParser implements ParserInterface {
 	protected ParserInterface next;
-	protected String pattern;
+	protected String patternString;
 	protected Composite data;
 
 	/**
@@ -18,12 +20,14 @@ public abstract class BaseParser implements ParserInterface {
 
 	@Override
 	public Composite parse(String info) {
-		String[] parts = info.split(pattern); //Splitting string with regexp pattern
-		if (this.next != null) {
-			for (String part : parts) {
-				data.add(next.parse(part));
-			}
-		}
+		Pattern pattern = Pattern.compile(this.patternString); //Splitting string with regexp pattern
+        Matcher matcher = pattern.matcher(info);
+
+        while (matcher.find()) {
+            if (this.next != null) {
+                data.add(next.parse(matcher.group()));
+            }
+        }
 		return data;
 	}
 }

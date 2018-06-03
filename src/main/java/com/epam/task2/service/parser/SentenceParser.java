@@ -6,28 +6,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SentenceParser extends BaseParser {
+    private String wordsStringPattern;
+    private String punctutionStringPattern;
 
     public SentenceParser() {
-        data = new Sentence();
-        next = new WordParser();
-        this.pattern = bundle.getString("parser.sentence.total"); //Overriding spliting pattern for text
+        this.wordsStringPattern = bundle.getString("parser.sentence.words");
+        this.punctutionStringPattern = bundle.getString("parser.sentence.punctuation");
+        this.patternString = "(" + wordsStringPattern + ")|(" + punctutionStringPattern + ")";
     }
 
     @Override
     public Composite parse(String info) {
-        Pattern pattern = Pattern.compile(this.pattern);
+        Pattern pattern = Pattern.compile(this.patternString);
         Matcher matcher = pattern.matcher(info);
-
+        data = new Sentence();
         while (matcher.find()) {
+
             SyntaxUnit unit;
-            
-            Pattern punctuationPattern = Pattern.compile("\\d+");
-            Matcher punctuationMatcher = punctuationPattern.matcher(matcher.toString()); 
-            
-            if (punctuationMatcher.matches()) {
-                unit = new Punctuation(matcher.toString());
+            Pattern punctuationPattern = Pattern.compile(punctutionStringPattern);
+            String str = matcher.group();
+            if (punctuationPattern.matcher(matcher.group()).matches()) {
+                unit = new Punctuation(matcher.group());
             } else {
-                unit = new Word(matcher.toString());
+                unit = new Word(matcher.group());
             }
             
             data.add(unit);

@@ -9,4 +9,8 @@ import java.util.List;
  * @version 1.0
  */
 public class Sentence extends Composite {
+    @Override
+    protected void printBefore() {
+        System.out.print("");
+    }
 }

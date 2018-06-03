@@ -9,6 +9,10 @@ package com.epam.task2.entity;
 public class CodeBlock implements SyntaxUnit {
     private String code;
 
+    public CodeBlock(String code) {
+        this.code = code;
+    }
+
     @Override
     public void print() {
         System.out.println(code);

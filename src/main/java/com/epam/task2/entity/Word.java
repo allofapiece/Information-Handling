@@ -10,7 +10,7 @@ import javafx.concurrent.WorkerStateEvent;
  * @author Listratsenka Stanislau
  * @version 1.0
  */
-public class Word extends Composite {
+public class Word implements SyntaxUnit {
     private String word;
 
     /**
@@ -37,6 +37,6 @@ public class Word extends Composite {
 
     @Override
     public void print() {
-        System.out.println(" " + word);
+        System.out.print(" " + word);
     }
 }

@@ -9,4 +9,8 @@ import java.util.List;
  * @version 1.0
  */
 public class Paragraph extends Composite{
+    @Override
+    protected void printAfter() {
+        System.out.print("\n\t");
+    }
 }

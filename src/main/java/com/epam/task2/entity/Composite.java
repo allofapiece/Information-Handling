@@ -12,7 +12,7 @@ import java.util.List;
  * @version 1.0
  */
 public abstract class Composite implements SyntaxUnit {
-    private List<SyntaxUnit> children = new ArrayList<>();
+    protected List<SyntaxUnit> children = new ArrayList<>();
 
     /**
      * Default constructor

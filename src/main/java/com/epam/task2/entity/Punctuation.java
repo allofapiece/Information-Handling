@@ -23,6 +23,6 @@ public class Punctuation implements SyntaxUnit {
 
     @Override
     public void print() {
-        System.out.println(punctuation);
+        System.out.print(punctuation);
     }
 }

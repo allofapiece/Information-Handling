@@ -9,8 +9,6 @@ public class TextParser extends BaseParser {
     private String codeBlocksStringPattern;
     private String paragraphsStringPattern;
     private String pattern;
-    private int lastCodeBlockStart;
-    private int lastCodeBlockEnd;
 
     public TextParser() {
         next = new ParagraphParser();
@@ -24,24 +22,16 @@ public class TextParser extends BaseParser {
         Pattern pattern = Pattern.compile(this.patternString);
         Matcher matcher = pattern.matcher(info);
         data = new Text();
-        int position = -1;
-        while (position == -1 ? matcher.find() : matcher.find(position)) {
+        while (matcher.find()) {
             SyntaxUnit unit;
-            Pattern codeBlockPattern = Pattern.compile(codeBlocksStringPattern);
-            String str = matcher.group();
-            if (codeBlockPattern.matcher(matcher.group()).matches()) {
-                unit = new CodeBlock(extractCodeBlock(info, matcher.start()));
+            Pattern codeBlocksPattern = Pattern.compile(codeBlocksStringPattern);
+            if (codeBlocksPattern.matcher(matcher.group()).matches()) {
+                unit = new CodeBlock(matcher.group());
                 data.add(unit);
-                position = lastCodeBlockEnd;
             } else {
                 data.add(next.parse(matcher.group()));
-                position = -1;
             }
         }
         return data;
-    }
-
-    private String extractCodeBlock(String string, int start) {
-
     }
 }

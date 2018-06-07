@@ -39,4 +39,9 @@ public class Word implements SyntaxUnit {
     public void print() {
         System.out.print(" " + word);
     }
+
+    @Override
+    public String toString() {
+        return word;
+    }
 }

@@ -1,7 +1,5 @@
 package com.epam.task2.entity;
 
-import com.epam.task2.service.parser.BaseParser;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +35,17 @@ public abstract class Composite implements SyntaxUnit {
 
 	/**
 	 * @param children
-	 * @return List
 	 */
-	public List<SyntaxUnit> setChildren(List children) {
+	public void setChildren(List children) {
 		this.children = children;
-
-		return this.children;
 	}
+
+    /**
+     * @return List
+     */
+    public List<SyntaxUnit> getChildren() {
+        return this.children;
+    }
 
     /**
      * @return int

@@ -1,7 +1,5 @@
 package com.epam.task2.entity;
 
-import javafx.concurrent.WorkerStateEvent;
-
 /**
  * That class describes words of sentence.
  * Keep attention {@link Punctuation} and {@link Word} classes are
@@ -28,13 +26,8 @@ public class Word implements SyntaxUnit {
     }
 
     /**
-     * Method print whitespace before each word
+     * {@inheritDoc}
      */
-    /*@Override
-    public void printBefore() {
-        System.out.println(" " + word);
-    }*/
-
     @Override
     public void print() {
         System.out.print(" " + word);
@@ -43,5 +36,28 @@ public class Word implements SyntaxUnit {
     @Override
     public String toString() {
         return word;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Word word1 = (Word) o;
+
+        return word != null ? word.equals(word1.word) : word1.word == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return word != null ? word.hashCode() : 0;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
     }
 }

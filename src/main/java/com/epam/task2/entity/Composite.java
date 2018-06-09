@@ -67,15 +67,29 @@ public abstract class Composite implements SyntaxUnit {
     }
 
     /**
-     * Can be used in {@code print} method how
-     * template before component printing
+     * Can be used in {@code print} method as
+     * before component printing template
      */
     protected void printBefore() {}
 
     /**
-     * Can be used in {@code print} method how
-     * template after component printing
+     * Can be used in {@code print} method as
+     * after component printing template
      */
     protected void printAfter() {}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Composite composite = (Composite) o;
+
+        return children != null ? children.equals(composite.children) : composite.children == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return children != null ? children.hashCode() : 0;
+    }
 }
